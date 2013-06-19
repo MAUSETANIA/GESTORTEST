@@ -10,6 +10,7 @@ import examen.negocio.Examen;
 import examen.negocio.Pregunta;
 import examen.negocio.Respuesta;
 import examen.persistencia.ArchivoXML;
+import examen.presentacion.administrarNotas.FormAdministrarNota;
 import examen.presentacion.vistaImagenes.ImageFileView;
 import examen.presentacion.vistaImagenes.ImagePreview;
 import java.io.*;
@@ -461,6 +462,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuNuevo.add(jMenuItem1);
 
         jMenuItem2.setText("Administrar Notas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuNuevo.add(jMenuItem2);
 
         jMenuBar1.add(menuNuevo);
@@ -837,6 +843,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+         new FormAdministrarNota(dir).setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

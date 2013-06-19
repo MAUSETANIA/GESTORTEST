@@ -207,7 +207,7 @@ public class FormAdministrarNota extends javax.swing.JFrame {
     private void lstFilesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstFilesValueChanged
         // TODO add your handling code here:
         selectedListaArchivo= lstFiles.getSelectedIndex();
-     //   new FormNotaAlumno(this, true).setVisible(true);
+      new FormNotaAlumno(this, true).setVisible(true);
     }//GEN-LAST:event_lstFilesValueChanged
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
