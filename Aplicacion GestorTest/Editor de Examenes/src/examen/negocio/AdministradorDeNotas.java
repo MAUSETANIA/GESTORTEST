@@ -43,12 +43,23 @@ public class AdministradorDeNotas {
     }
 
     public int cantidadAprobados(){
-        return 0;
-        
+         int cont=0;
+        for(int i=0;i<examenes.size();i++){
+            if(Calificacion.notaExamen(examenes.get(i))>=(Calificacion.totalExamen(examenes.get(i))/2)+1){
+                cont++;
+            }
+        }
+        return cont;
     }
     
      public int cantidadReprobados(){
-        return 0;
+         int cont=0;
+        for(int i=0;i<examenes.size();i++){
+            if(Calificacion.notaExamen(examenes.get(i))<(Calificacion.totalExamen(examenes.get(i))/2)+1){
+                cont++;
+            }
+        }
+        return cont;
         
      }
      
