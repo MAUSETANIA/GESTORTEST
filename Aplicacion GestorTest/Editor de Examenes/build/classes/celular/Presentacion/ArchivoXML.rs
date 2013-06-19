@@ -1,2 +1,0 @@
-celular.Presentacion.XMLFilter
-celular.Presentacion.ArchivoXML
