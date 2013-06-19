@@ -5,6 +5,7 @@
 package examen.presentacion.disenador;
 
 import com.lowagie.tools.arguments.ImageFilter;
+import examen.PDF.ExamenPDF;
 import examen.negocio.Examen;
 import examen.negocio.Pregunta;
 import examen.negocio.Respuesta;
@@ -13,6 +14,8 @@ import examen.presentacion.vistaImagenes.ImageFileView;
 import examen.presentacion.vistaImagenes.ImagePreview;
 import java.io.*;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -37,8 +40,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     private Vector<Pregunta> preguntas = new Vector<Pregunta>();
     @SuppressWarnings("UseOfObsoleteCollectionType")
     private Vector<Respuesta> respuestas = new Vector<Respuesta>();
-    //private ExamenPDF vp = new ExamenPDF();
-    String dir = "C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\RESPUESTAS\\";
+    private ExamenPDF vp = new ExamenPDF();
+    String dir = "C:\\GestorTest\\RESPUESTAS\\";
     public FormPrincipal() {
        
         initComponents();
@@ -129,6 +132,8 @@ public class FormPrincipal extends javax.swing.JFrame {
         menuNuevo = new javax.swing.JMenu();
         jMenuItemNuevo = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
@@ -447,6 +452,17 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
         menuNuevo.add(jMenuItem4);
 
+        jMenuItem1.setText("Generar PDF");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuNuevo.add(jMenuItem1);
+
+        jMenuItem2.setText("Administrar Notas");
+        menuNuevo.add(jMenuItem2);
+
         jMenuBar1.add(menuNuevo);
 
         jMenu4.setText("Help");
@@ -482,7 +498,7 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addComponent(btnBarGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -528,7 +544,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         return true;
     }
     public void cargarDirectorioAsignatura() {
-        File file = new File("C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\ASIGNATURA");
+        File file = new File("C:\\GestorTest\\ASIGNATURA");
         file.mkdir();
         DefaultMutableTreeNode node = new DefaultMutableTreeNode(file.getName());
         cargarExamenes(node, file);
@@ -546,7 +562,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         if (nombreCapeta == null || nombreCapeta.equals("")) {
             return;
         }
-        File Carpeta = new File("C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\ASIGNATURA\\" + nombreCapeta);
+        File Carpeta = new File("C:\\GestorTest\\ASIGNATURA\\" + nombreCapeta);
         Carpeta.mkdir();
         cargarDirectorioAsignatura();
         System.out.println("adicionando");
@@ -557,7 +573,7 @@ public class FormPrincipal extends javax.swing.JFrame {
         if (evt.getClickCount() == 2 && !TreeExamenes.isSelectionEmpty()) {
             LimpiarEditor();
             TreePath path = TreeExamenes.getSelectionPath();
-            String direccion = "C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\";
+            String direccion = "C:\\GestorTest\\";
             for (int i = 0; i < path.getPathCount(); i++) {
                 direccion = direccion + "/" + path.getPathComponent(i);
                 System.out.println(path.getPathComponent(i));
@@ -811,6 +827,17 @@ public class FormPrincipal extends javax.swing.JFrame {
         GuardarExamen();
     }//GEN-LAST:event_btnBarGuardarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+         
+       try {
+            vp.pdfExamen(examen, "C:\\GestorTest\\EXAMEN PDF\\" + examen.getDescripcion() + ".pdf");
+        } catch (IOException ex) {
+            Logger.getLogger(FormPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -877,6 +904,8 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelImagen;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem jMenuItemNuevo;

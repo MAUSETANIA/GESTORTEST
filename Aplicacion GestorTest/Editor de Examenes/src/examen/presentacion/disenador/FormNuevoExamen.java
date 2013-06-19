@@ -26,7 +26,7 @@ public class FormNuevoExamen extends javax.swing.JDialog {
         initComponents();
         this.setTitle("Nuevo Examen");
         setLocationRelativeTo(null);
-        File file = new File("C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\ASIGNATURA\\");
+        File file = new File("C:\\GestorTest\\ASIGNATURA\\");
         if (file.isDirectory()) {
             comboAsignatura.setModel(new DefaultComboBoxModel(file.list()));
         }
@@ -35,7 +35,7 @@ public class FormNuevoExamen extends javax.swing.JDialog {
         super(parent, modal);
         this.examen = examen;
         initComponents();
-        File file = new File("C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\ASIGNATURA\\");
+        File file = new File("C:\\GestorTest\\ASIGNATURA\\");
         if (file.isDirectory()) {
             comboAsignatura.setModel(new DefaultComboBoxModel(file.list()));
         }
@@ -181,7 +181,7 @@ public class FormNuevoExamen extends javax.swing.JDialog {
         examen.setAsignatura(comboAsignatura.getSelectedItem().toString());
         examen.setGrupo(textGrupo.getText());
 
-        String path = new File("C:\\Documents and Settings\\Lorena\\Mis documentos\\GestorTest\\ASIGNATURA\\" + comboAsignatura.getSelectedItem().toString()).getAbsolutePath();
+        String path = new File("C:\\GestorTest\\ASIGNATURA\\" + comboAsignatura.getSelectedItem().toString()).getAbsolutePath();
         ArchivoXML.guardarXML(examen, path + "/" + name, textProfesor.getText());
         this.setVisible(false);
         this.dispose();
