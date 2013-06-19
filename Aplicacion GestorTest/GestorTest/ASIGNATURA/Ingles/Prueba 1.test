@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MiTest
+Version 1.1.0  e-mail:IngenieriaDeSoftware@uagrm.edu.bo
+Fecha de creación: 16-jun-2013
+Descripcion: Diseñador y editor de test -->
+<examen tiempo="2">
+  <nombre>Prueba 1</nombre>
+  <alumno />
+  <registro />
+  <grupo>SA</grupo>
+  <profesor>Lorena</profesor>
+  <asignatura>Ingles</asignatura>
+  <pregunta tipo="2">
+    <puntos>1.0</puntos>
+    <texto>What it is ?</texto>
+    <imagen>R0lGODlhMQA8APcAAAAAAAAIAAAQAAApAAA5AABCAABKAABjAABrAABzAACMAAC1AAgAAAgICAgx&#xD;
+CAhCCBAAABAICBAQEBAhEBBKEBgQEBgYEBgYGCEIACEYGCEhISFjISGEISkIACkhISkpKSlSISnG&#xD;
+zjEIADEYEDEhGDEpKTExMTFSMTGUKTkQADkhEDkxMTk5MTk5OUIQAEI5OUJCQkoQAEohEEpCQkpK&#xD;
+QkpKSlIYAFIxIVJKSlJSUlJaSlKcSlKcpVoYAFohAFohCFopGFoxIVpSUlpaUlpaWmMYAGMxIWNC&#xD;
+OWNaUmNaWmNjY2NrY2OcpWOttWs5KWtSSmtaWmtjY2tra2ucY3MhAHNjWnNrY3Nra3Nzc3shAHsp&#xD;
+AHs5IXtjWntjY3tra3tza3tzc3t7e4QhAIQpAIRrY4R7e4SEhISlrYwpAIwxEIxza4x7e4yEhIyM&#xD;
+jJQpAJQxAJR7e5SEhJSMhJSUlJwpAJyMjJyUlJycnJze3qUxAKVrUqWUlKWcnKWlpa0xAK1CGK2c&#xD;
+nK2lpa2trbUxALVSKbVzUrWMe7WlpbWtpbWtrbW1tb0xAL05AL1aOb1rSr1zUr2llL2tpb2trb21&#xD;
+tb29vb3W1sY5AMa1rca1tcbGxs45AM69vc7Ozs7W1tY5ANa1rdbGxtbW1t5CAN7Oxt7Ozt7e3udC&#xD;
+AOfOzufWzufW1ufn5+9CAO/W1u/e3u/v7/dKAPfe3vfn3vfn5/f39/9KAP/v7////wAAAAAAAAAA&#xD;
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#xD;
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#xD;
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#xD;
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAALYALAAAAAAxADwA&#xD;
+AAj+AG0JHEiw4EBXSiRgUWWwocOHEAeWmiEJkZAPoSJq3GgQSyxYtWJt0iCIo8mIZliFrFUL1iUJ&#xD;
+lE7KJDiLCKhYtWThZLnpw6yZM/ncbMkSJMhIWIDKjFJ0JU6csKIoUmrSRByQO0GuhIWR6kZXWEx4&#xD;
+UYm16SYlXk0qkiLk0taVYNKeBIujbEshcmVSgkE2ZNy8Jzm1GFprDWC9EkCBDHNYZp8VtVAlbWxQ&#xD;
+0ZxSDZUAAoWWMkFBe2IBMoP5M5hYOEwoWa2khpQ+ruTOktIK0KFRh/iUthUKB0tWoECpDHnKDmyv&#xD;
+d/bMiEWqDhtUm/pk5OSF6NOsIdf0oYoF0KZacQD+RLiCE9CQFpKewtpTFFDIQ0lWhAnD8OQdTGAA&#xD;
+xZIjQVWmK4f8ZsULK3yHyQwraFBgLSvkIMElLxBxUilJMFhCLYCYMFAop7H01iVC4HAITqhEEQUs&#xD;
+F6niSmwRzUIeJg2kB0hnApURRSyyWBcSLLGksglIcdQhSxJKlLLiTxDNsQkqLYzCknYDcSJJHOmx&#xD;
+BFVRm2wSSyRmhAHDdra4Ut9DmdiBSgW+gcQCQVispJNbVrKCCigY5uBKGUhulIgdh1yAAyk4lTHJ&#xD;
+QTcSVQsYsCQKKCinXNFCG5kc4QghjehhyCWfcFLQLHdIAYgQABQKSxwxDSTFGk7VsocQrOi0xxX+&#xD;
+GWgQShhPMPJKDIw48UgVkOxmCycasCEJAABkwN4lbOQpkCAeNIUTGBIQ2wIYX3wQxg9oxFAIJWMa&#xD;
+RIkGSVgBRhzUKjFVZQBYQcpbOIGyRgZopNFDHn8MuhEnguTLibIDzZbEekIIAUYU44JRAgRZpPCG&#xD;
+JWNAocFAmbBIVQ3sPeXhR2r8oMIHZdQxAhyylLHbGVS5QoSWRcECyiHIGpEFCXtg0ioqYMiCSiYD&#xD;
+MaGUK0ng2BIgLZQgRAkZMOCHCEOgDNImh2xSUkbdmjRLFGSh4gUgsMiitSyIVOACGjZIUHEtm1xS&#xD;
+0h0740CYe3JuLYskoEiAgRySvFBlLGbb0kT+J0Dl8N2VSGTxAxKojBLLHnx80Wwtl4CxUhmCqBIC&#xD;
+HjMpgipWsDhhyiuvmAJEIEx5cEEZOG1SR1EvcKIKDzgXxEkfs4QStS2lCLGSqmNs/ooobrxygxAv&#xD;
+XIB1SF6gAtIlF0CUiQQNEJGDLYKw6IoGgLZ0yCCcZz+GKJowgEMq6jGF0xqMOdRGAAYUIAAARADA&#xD;
+ohlx3B6EH5a8wogfrxThQxdIDP3BDHzyGSsAIAWJGcQVHyiAAgQwAACYQUUSeIsM8uADWrxiDLTo&#xD;
+wAWSAAZJZAkQGWhAKkBCsE0kAW0NCQMFEJCABCygAAQwgAMsgAMh6AAED3jAG7JACyr44Ab+TkoV&#xD;
+cxhguzrMACuYyAGYGhIKIixhCSfYwAE4gIIdTEEOlxgBFTSRBySAAXxCZMkMkiAHL7RiJ+MriUYo&#xD;
+AQA63W4TZIDC6bBjKJAwL0AWw8pfItIGAPAoJ9bRWhitU4cMoKKOVjrURhLCros1RUexkMQFVGIx&#xD;
+Q3mhDRu5QwZud6VOClESEUAZdj7ygudtJBN+1NEgtQKLMkRAEm6yGCBqALuIqMJc0fpbTq70lpaw&#xD;
+ggYAEBIvYXEIIbTpKwCgAaj0YyiL5Ygom8hAG/pAhAtE4ZA7YUDrNNKHD6zgA2uogfjcpKOsbSIH&#xD;
+26xFJ8pABCGpbA1RUAIlDGgQTghPFpvLcKWzbqcVO5ThIWbwACKccog1zIFfBHFFH2DwAmDWJZFE&#xD;
+gUUdcKAplFwhUYmUhG5alAkYrGAUOcIKKdaACD6YdA18mIMiEEo7JYwIkLAYRSC2CRFFaGAGYBAl&#xD;
+J1dyCjlIoaIFMYMQTiESKJzmnyaZRB+iYIaY/bGXhytSPWuwAhxI4At2SAJVQiEIM1wtVaSQxSVq&#xD;
+4KuBqGIOZlCCIFgqk1m0IQd7MAorklCHOtDIMw3hRBusoKU9sKEEk8HrQ2ahiCsQAQZgYGtBAgIA&#xD;
+Ow==</imagen>
+    <respuesta correcto="true" marcado="false" completado="">Rabbit</respuesta>
+    <respuesta correcto="false" marcado="false" completado="">Duck</respuesta>
+    <respuesta correcto="true" marcado="false" completado="">Rabbit</respuesta>
+  </pregunta>
+  <pregunta tipo="3">
+    <puntos>2.0</puntos>
+    <texto>Conejo en Inglés e *Rabbit</texto>
+    <imagen />
+    <respuesta correcto="false" marcado="false" completado="">Rabbit</respuesta>
+  </pregunta>
+</examen>
+

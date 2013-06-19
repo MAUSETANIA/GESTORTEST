@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MiTest
+Version 1.1.0  e-mail:IngenieriaDeSoftware@uagrm.edu.bo
+Fecha de creación: 16-jun-2013
+Descripcion: Diseñador y editor de test -->
+<examen tiempo="1">
+  <nombre>Prueba 2</nombre>
+  <alumno />
+  <registro />
+  <grupo />
+  <profesor>Lorena</profesor>
+  <asignatura>Historia</asignatura>
+  <pregunta tipo="2">
+    <puntos>1.0</puntos>
+    <texto>Como se llama el Gobernador de SC?</texto>
+    <imagen />
+    <respuesta correcto="true" marcado="false" completado="">Ruben Costas</respuesta>
+    <respuesta correcto="false" marcado="false" completado="">Fernando García</respuesta>
+  </pregunta>
+</examen>
+
