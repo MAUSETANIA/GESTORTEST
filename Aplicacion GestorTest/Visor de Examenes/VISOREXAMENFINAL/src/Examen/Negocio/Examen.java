@@ -11,8 +11,12 @@ package Examen.Negocio;
 import Examen.Datos.PersistenteXML;
 import java.util.List;
 import java.util.Vector;
-
 import org.jdom.Element;
+
+/**
+ @author Yesika Luna Robles
+  @version V1.2
+ */
 public class Examen implements PersistenteXML {
 
     private String descripcion;
