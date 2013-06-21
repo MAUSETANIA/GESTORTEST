@@ -1,0 +1,5 @@
+Para poder ejecutar la aplicacion se debe  instalar
+en el siguiente orden:
+
+1.-EDITOREXAMEN
+2.-GestorTest(Visor de Examenes)
