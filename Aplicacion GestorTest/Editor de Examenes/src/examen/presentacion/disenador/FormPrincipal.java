@@ -49,6 +49,7 @@ public class FormPrincipal extends javax.swing.JFrame {
          cargarDirectorioAsignatura();
         activarPanelTipo(cbxTipo.getSelectedIndex());
         setLocationRelativeTo(null);
+        //limpiar checkbox
         rbIncorrecto.setSelected(new Boolean("False"));
         rbCorrecto.setSelected(new Boolean("False"));
         
@@ -1086,6 +1087,9 @@ public class FormPrincipal extends javax.swing.JFrame {
             btnAdicionarPregunta.setEnabled(false);
         }
     }
+    /*
+     * Metodo para Limpiar botones
+     */
     public void Limpiarbotones(){
      rbIncorrecto.setSelected(new Boolean("False"));
         rbCorrecto.setSelected(new Boolean("False"));
