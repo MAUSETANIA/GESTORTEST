@@ -16,6 +16,10 @@ import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import com.jtattoo.plaf.mint.MintLookAndFeel;
 import com.jtattoo.plaf.noire.NoireLookAndFeel;
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
+
+
+
+
 import com.sun.java.swing.plaf.motif.MotifLookAndFeel;
 import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 import examen.presentacion.disenador.FormPrincipal;
