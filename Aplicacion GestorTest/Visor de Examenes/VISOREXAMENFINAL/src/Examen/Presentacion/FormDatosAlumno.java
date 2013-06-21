@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Modelo
  */
+/*clase para permitir realizar el examen del alumno que ingrese*/
 public class FormDatosAlumno extends javax.swing.JDialog {
         private Examen examen;
     /** Creates new form FormAlumno */
