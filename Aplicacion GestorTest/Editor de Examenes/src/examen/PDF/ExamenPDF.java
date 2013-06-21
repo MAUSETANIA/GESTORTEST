@@ -35,7 +35,13 @@ import java.util.List;
  *
  * @author modelo
  */
+/**
+ * @version 1.2
+ * @class :esta clase obtiene un reporte de los examenes
+ * realizados en el test
+ */
 public class ExamenPDF {
+    
     public ExamenPDF() {
     }
 
@@ -197,19 +203,7 @@ public class ExamenPDF {
 
     public static void main(String[] args) throws FileNotFoundException, DocumentException, IOException {
         ExamenPDF p = new ExamenPDF();
-        /*String g[] = new String[12];
-        g[0] = "Examen de Ingles";
-        g[1] = "Pregunta 1";
-        g[2] = "Pregunta 2";
-        g[3] = "Pregunta 3";
-        g[4] = "Pregunta 4";*/
-        //p.addComponentes(g, 5);
-        /* TextField t = null;
-        p.addComponentes(g, 5);
-        Document document = new Document(PageSize.A4.rotate());        
-        PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("yo.pdf"));
-        addComponenteAngel(writer,document, t);*/
-        // p.addComponente("ExamenPDF.pdf", g, 10, 1);
+       
 
         Examen exa = new Examen();
         exa.setDescripcion("Examen de Ingles Primer Parcial");
