@@ -49,26 +49,35 @@ public class FormPrincipal extends javax.swing.JFrame {
          cargarDirectorioAsignatura();
         activarPanelTipo(cbxTipo.getSelectedIndex());
         setLocationRelativeTo(null);
+        rbIncorrecto.setSelected(new Boolean("False"));
+        rbCorrecto.setSelected(new Boolean("False"));
+        
+    }
+    private void LimpiarPanelRespuesta(){
+        if(cbxTipo.getSelectedIndex()==0||cbxTipo.getSelectedIndex()==1){
+            txtRespuesta.setText("");
+            ((DefaultListModel) listaRespuesta.getModel()).clear();
+        }
     }
     private void activarPanelTipo(int tipo) {
-       //LimpiarPanelRespuesta();
+      LimpiarPanelRespuesta();
         if(tipo==0 || tipo ==1){
 
            btnMarcar.setVisible(false);
-          // txtRespuesta.setVisible(true);
-           //LbRespuesta.setVisible(true);
-           //rbCorrecto.setVisible(true);
-           //rbIncorrecto.setVisible(true);
-           //btnAdicionarRespuesta.setVisible(true);
-           //btnEliminarRespuesta.setVisible(true);
-           //btnModificarRespuesta.setVisible(true);
-           //listaRespuesta.setVisible(true);
+           txtRespuesta.setVisible(true);
+           LbRespuesta.setVisible(true);
+           rbCorrecto.setVisible(true);
+           rbIncorrecto.setVisible(true);
+           btnAdicionarRespuesta.setVisible(true);
+           btnEliminarRespuesta.setVisible(true);
+           btnModificarRespuesta.setVisible(true);
+           listaRespuesta.setVisible(true);
+           
 
        }else
        {
            btnMarcar.setVisible(true);
            //panelRespuesta.setVisible(false);
-           /*
            txtRespuesta.setVisible(false);
            LbRespuesta.setVisible(true);
            rbCorrecto.setVisible(false);
@@ -76,7 +85,6 @@ public class FormPrincipal extends javax.swing.JFrame {
            btnAdicionarRespuesta.setVisible(false);
            btnEliminarRespuesta.setVisible(false);
            btnModificarRespuesta.setVisible(false);
-           */
            //listaRespuesta.setVisible(false);
        }
     }
@@ -108,13 +116,16 @@ public class FormPrincipal extends javax.swing.JFrame {
         textPregunta = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         btnMarcar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaPregunta = new javax.swing.JList();
-        btnNuevaPregunta = new javax.swing.JButton();
-        btnAdicionarPregunta = new javax.swing.JButton();
-        btnEliminarPregunta = new javax.swing.JButton();
-        btnModificarPregunta = new javax.swing.JButton();
+        panelRespuesta = new javax.swing.JPanel();
+        btnEliminarRespuesta = new javax.swing.JButton();
+        rbCorrecto = new javax.swing.JRadioButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        listaRespuesta = new javax.swing.JList();
+        btnAdicionarRespuesta = new javax.swing.JButton();
+        rbIncorrecto = new javax.swing.JRadioButton();
+        LbRespuesta = new javax.swing.JLabel();
+        btnModificarRespuesta = new javax.swing.JButton();
+        txtRespuesta = new javax.swing.JTextField();
         txtRutaExamen = new javax.swing.JTextField();
         tiempoExa = new javax.swing.JSpinner();
         jLabel3 = new javax.swing.JLabel();
@@ -128,7 +139,17 @@ public class FormPrincipal extends javax.swing.JFrame {
         txtGrupo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtAsignatura = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaPregunta = new javax.swing.JList();
+        jLabel4 = new javax.swing.JLabel();
+        btnNuevaPregunta = new javax.swing.JButton();
+        btnAdicionarPregunta = new javax.swing.JButton();
+        btnModificarPregunta = new javax.swing.JButton();
+        btnEliminarPregunta = new javax.swing.JButton();
         btnBarGuardar = new javax.swing.JButton();
+        btnBarNuevo = new javax.swing.JButton();
+        btnBarAbrir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuNuevo = new javax.swing.JMenu();
         jMenuItemNuevo = new javax.swing.JMenuItem();
@@ -203,52 +224,102 @@ public class FormPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 255));
-        jLabel4.setText("Preguntas");
+        panelRespuesta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Respuestas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(102, 102, 255))); // NOI18N
+        panelRespuesta.setEnabled(false);
 
-        listaPregunta.setModel(new DefaultListModel());
-        listaPregunta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        listaPregunta.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        btnEliminarRespuesta.setText("Eliminar Respuesta");
+        btnEliminarRespuesta.setEnabled(false);
+        btnEliminarRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarRespuestaActionPerformed(evt);
+            }
+        });
+
+        rbCorrecto.setText("Correcto [V]");
+
+        listaRespuesta.setModel(new DefaultListModel());
+        listaRespuesta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaRespuesta.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                listaPreguntaValueChanged(evt);
+                listaRespuestaValueChanged(evt);
             }
         });
-        listaPregunta.addFocusListener(new java.awt.event.FocusAdapter() {
+        listaRespuesta.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                listaPreguntaFocusGained(evt);
+                listaRespuestaFocusGained(evt);
             }
         });
-        jScrollPane2.setViewportView(listaPregunta);
+        jScrollPane4.setViewportView(listaRespuesta);
 
-        btnNuevaPregunta.setText("Nuevo");
-        btnNuevaPregunta.addActionListener(new java.awt.event.ActionListener() {
+        btnAdicionarRespuesta.setText("Adicionar Respuesta");
+        btnAdicionarRespuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevaPreguntaActionPerformed(evt);
-            }
-        });
-
-        btnAdicionarPregunta.setText("Adicionar Pregunta");
-        btnAdicionarPregunta.setEnabled(false);
-        btnAdicionarPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarPreguntaActionPerformed(evt);
+                btnAdicionarRespuestaActionPerformed(evt);
             }
         });
 
-        btnEliminarPregunta.setText("Eliminar Pregunta");
-        btnEliminarPregunta.addActionListener(new java.awt.event.ActionListener() {
+        rbIncorrecto.setSelected(true);
+        rbIncorrecto.setText("Incorrecto [F]");
+
+        LbRespuesta.setText("Respuesta:");
+
+        btnModificarRespuesta.setText("Modificar Respuesta");
+        btnModificarRespuesta.setEnabled(false);
+        btnModificarRespuesta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarPreguntaActionPerformed(evt);
+                btnModificarRespuestaActionPerformed(evt);
             }
         });
 
-        btnModificarPregunta.setText("Modificar Pregunta");
-        btnModificarPregunta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarPreguntaActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout panelRespuestaLayout = new javax.swing.GroupLayout(panelRespuesta);
+        panelRespuesta.setLayout(panelRespuestaLayout);
+        panelRespuestaLayout.setHorizontalGroup(
+            panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRespuestaLayout.createSequentialGroup()
+                .addGroup(panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRespuestaLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(LbRespuesta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
+                    .addGroup(panelRespuestaLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnEliminarRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdicionarRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnModificarRespuesta)))
+                    .addGroup(panelRespuestaLayout.createSequentialGroup()
+                        .addComponent(rbCorrecto)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbIncorrecto)))
+                .addContainerGap())
+        );
+        panelRespuestaLayout.setVerticalGroup(
+            panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRespuestaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LbRespuesta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbCorrecto)
+                    .addComponent(rbIncorrecto))
+                .addGroup(panelRespuestaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelRespuestaLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnAdicionarRespuesta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarRespuesta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificarRespuesta))
+                    .addGroup(panelRespuestaLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(130, 130, 130))
+        );
 
         javax.swing.GroupLayout panelPreguntaLayout = new javax.swing.GroupLayout(panelPregunta);
         panelPregunta.setLayout(panelPreguntaLayout);
@@ -275,28 +346,16 @@ public class FormPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnCargarImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(22, 22, 22))
                     .addGroup(panelPreguntaLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(panelPreguntaLayout.createSequentialGroup()
                         .addGroup(panelPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelPreguntaLayout.createSequentialGroup()
                                 .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(6, 6, 6)
                                 .addGroup(panelPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnMarcar))
                                 .addGap(15, 15, 15)
                                 .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelPreguntaLayout.createSequentialGroup()
-                                .addComponent(btnNuevaPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(panelPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnEliminarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panelPreguntaLayout.createSequentialGroup()
-                                        .addComponent(btnAdicionarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnModificarPregunta)))))
+                            .addComponent(panelRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
         );
         panelPreguntaLayout.setVerticalGroup(
@@ -321,18 +380,8 @@ public class FormPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnMarcar))
                     .addComponent(jLabelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPreguntaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNuevaPregunta)
-                    .addComponent(btnAdicionarPregunta)
-                    .addComponent(btnModificarPregunta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnEliminarPregunta)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         txtRutaExamen.setEditable(false);
@@ -353,6 +402,53 @@ public class FormPrincipal extends javax.swing.JFrame {
         jLabel11.setText("Grupo");
 
         jLabel12.setText("Asignatura");
+
+        listaPregunta.setModel(new DefaultListModel());
+        listaPregunta.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        listaPregunta.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                listaPreguntaValueChanged(evt);
+            }
+        });
+        listaPregunta.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                listaPreguntaFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(listaPregunta);
+
+        jLabel4.setFont(new java.awt.Font("SansSerif", 3, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel4.setText("Preguntas");
+
+        btnNuevaPregunta.setText("Nuevo");
+        btnNuevaPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevaPreguntaActionPerformed(evt);
+            }
+        });
+
+        btnAdicionarPregunta.setText("Adicionar Pregunta");
+        btnAdicionarPregunta.setEnabled(false);
+        btnAdicionarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdicionarPreguntaActionPerformed(evt);
+            }
+        });
+
+        btnModificarPregunta.setText("Modificar Pregunta");
+        btnModificarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarPreguntaActionPerformed(evt);
+            }
+        });
+
+        btnEliminarPregunta.setText("Eliminar Pregunta");
+        btnEliminarPregunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarPreguntaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelEditorLayout = new javax.swing.GroupLayout(panelEditor);
         panelEditor.setLayout(panelEditorLayout);
@@ -388,10 +484,27 @@ public class FormPrincipal extends javax.swing.JFrame {
                                         .addComponent(tiempoExa, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel7))
-                                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 11, Short.MAX_VALUE))
-                    .addComponent(panelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                    .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(panelEditorLayout.createSequentialGroup()
+                        .addGroup(panelEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelEditorLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel4))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelEditorLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(panelEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnAdicionarPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnNuevaPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(panelEditorLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnModificarPregunta))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEditorLayout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(btnEliminarPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(17, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelEditorLayout.setVerticalGroup(
             panelEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,8 +531,24 @@ public class FormPrincipal extends javax.swing.JFrame {
                 .addGroup(panelEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(txtAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
+                .addGroup(panelEditorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelEditorLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panelPregunta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelEditorLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnNuevaPregunta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAdicionarPregunta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificarPregunta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminarPregunta)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         btnBarGuardar.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
@@ -431,6 +560,42 @@ public class FormPrincipal extends javax.swing.JFrame {
         btnBarGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBarGuardarActionPerformed(evt);
+            }
+        });
+
+        btnBarNuevo.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        btnBarNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgBarra/Nuevo.gif"))); // NOI18N
+        btnBarNuevo.setText("Nuevo");
+        btnBarNuevo.setFocusable(false);
+        btnBarNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBarNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBarNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBarNuevoActionPerformed(evt);
+            }
+        });
+
+        btnBarAbrir.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        btnBarAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgBarra/abrir.png"))); // NOI18N
+        btnBarAbrir.setText("Abrir");
+        btnBarAbrir.setFocusable(false);
+        btnBarAbrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnBarAbrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBarAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBarAbrirActionPerformed(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ImgBarra/Eliminar.gif"))); // NOI18N
+        jButton1.setText("Eliminar");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -485,26 +650,37 @@ public class FormPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBarGuardar)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBarNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBarAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBarGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(628, 628, 628))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(btnBarGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBarGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBarNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBarAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 557, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 29, Short.MAX_VALUE))
+                    .addComponent(panelEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -686,37 +862,52 @@ public class FormPrincipal extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnMarcarActionPerformed
-
-    private void listaPreguntaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaPreguntaValueChanged
-        if (listaPregunta.getSelectedIndex() >= 0) {
-
-            Pregunta p = preguntas.get(listaPregunta.getSelectedIndex());
-           // actualizarListaRespuestas(p);
-           // txtRespuesta.setText("");
-            textPregunta.setText(p.getTexto());
-            if (p.getImagen() != null) {
-                try {
-                    ImageIcon images = new ImageIcon(otraImagen.imageString(p.getImagen()));
-                    jLabelImagen.setIcon(images);
-                    txtImagen.setText("con Imagen");
-                } catch (Exception e) {
-                    System.out.print("FormPrincipal: Error al cargar la imagen");
-                }
-            } else {
-                txtImagen.setText("Sin Imagen");
-
-            }
-
-            spinnerPuntaje.setValue((Float) p.getPuntos());
-            cbxTipo.setSelectedIndex(p.getTipo() - 1);
-
-            //actualizar botones
-            btnNuevaPregunta.setEnabled(true);
-            btnAdicionarPregunta.setEnabled(false);
-            btnEliminarPregunta.setEnabled(true);
-            btnModificarPregunta.setEnabled(true);
-           // panelRespuesta.setEnabled(true);
+     private void actualizarListaRespuestas(Pregunta pregunta) {
+        respuestas = pregunta.getRespuestas();
+        if(pregunta.getTipo()==1||pregunta.getTipo()==2){
+        //System.out.println(respuestas.size());
+        ((DefaultListModel) listaRespuesta.getModel()).clear();///////
+        for (int i = 0; i < respuestas.size(); i++) {
+            ((DefaultListModel) listaRespuesta.getModel()).add(i, indice[i]);
         }
+        }else{
+            ((DefaultListModel) listaRespuesta.getModel()).clear();
+             for (int i = 0; i < respuestas.size(); i++) {
+                  ((DefaultListModel) listaRespuesta.getModel()).add(i,pregunta.getRespuestas().get(i).getRespuesta());
+             }
+
+        }
+    }
+    private void listaPreguntaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaPreguntaValueChanged
+         if (listaPregunta.getSelectedIndex() >= 0) {
+        
+        Pregunta p = preguntas.get(listaPregunta.getSelectedIndex());
+        actualizarListaRespuestas(p);
+        txtRespuesta.setText("");
+        textPregunta.setText(p.getTexto());
+        if(p.getImagen()!=null){
+            try {
+                ImageIcon images = new ImageIcon(otraImagen.imageString(p.getImagen()));
+                jLabelImagen.setIcon(images);
+                txtImagen.setText("con Imagen");
+            } catch (Exception e) {
+                System.out.print("FormPrincipal: Error al cargar la imagen");
+            }
+        }else{
+            txtImagen.setText("Sin Imagen");
+
+        }
+        
+        spinnerPuntaje.setValue((Float) p.getPuntos());
+        cbxTipo.setSelectedIndex(p.getTipo() - 1);
+
+        //actualizar botones
+        btnNuevaPregunta.setEnabled(true);
+        btnAdicionarPregunta.setEnabled(false);
+        btnEliminarPregunta.setEnabled(true);
+        btnModificarPregunta.setEnabled(true);
+        panelRespuesta.setEnabled(true);
+    }
     }//GEN-LAST:event_listaPreguntaValueChanged
 
     private void listaPreguntaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listaPreguntaFocusGained
@@ -849,6 +1040,143 @@ public class FormPrincipal extends javax.swing.JFrame {
          new FormAdministrarNota(dir).setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void btnEliminarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarRespuestaActionPerformed
+        int r = JOptionPane.showConfirmDialog(null, "¿EliminarRespuesta?", "Eliminar Respuesta", 2);
+        if (r == 1) {
+            return;
+        }
+        int seleccion = listaRespuesta.getSelectedIndex();
+        if (seleccion == -1) {
+            return;
+        }
+        Pregunta p = new Pregunta();
+        p = preguntas.get(listaPregunta.getSelectedIndex());
+        p.getRespuestas().remove(seleccion);
+        DefaultListModel model = (DefaultListModel) listaRespuesta.getModel();
+        model.remove(seleccion);
+        txtRespuesta.setText("");
+        rbIncorrecto.setSelected(true);
+
+
+
+        btnAdicionarRespuesta.setEnabled(true);
+        btnEliminarRespuesta.setEnabled(false);
+        btnModificarRespuesta.setEnabled(true);
+
+    }//GEN-LAST:event_btnEliminarRespuestaActionPerformed
+
+    private void listaRespuestaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaRespuestaValueChanged
+        if (listaRespuesta.getSelectedIndex() >= 0) {
+            Respuesta r = respuestas.get(listaRespuesta.getSelectedIndex());
+            txtRespuesta.setText(r.getRespuesta());
+            if (r.isCorrecto()) {
+                rbCorrecto.setSelected(true);
+            } else {
+                rbIncorrecto.setSelected(true);
+            }
+
+            btnAdicionarRespuesta.setEnabled(true);
+            btnEliminarRespuesta.setEnabled(true);
+            btnModificarRespuesta.setEnabled(true);
+        }
+    }//GEN-LAST:event_listaRespuestaValueChanged
+
+    private void listaRespuestaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listaRespuestaFocusGained
+        if (listaRespuesta.getSelectedIndex() >= 0) {
+            btnModificarRespuesta.setEnabled(true);
+            btnEliminarRespuesta.setEnabled(true);
+        }
+    }//GEN-LAST:event_listaRespuestaFocusGained
+
+    
+    private void actualizarCampos() {
+        if (textPregunta.getText().trim().length() > 0 && listaRespuesta.getModel().getSize() > 0) {
+            btnAdicionarPregunta.setEnabled(true);
+        } else {
+            btnAdicionarPregunta.setEnabled(false);
+        }
+    }
+    public void Limpiarbotones(){
+     rbIncorrecto.setSelected(new Boolean("False"));
+        rbCorrecto.setSelected(new Boolean("False"));
+    }
+    private void btnAdicionarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarRespuestaActionPerformed
+
+        if (!txtRespuesta.getText().equals("")) {
+            Respuesta respuesta = new Respuesta(txtRespuesta.getText().trim());
+            respuesta.setCorrecto(rbCorrecto.isSelected());
+            respuesta.setMarcado(false);
+            respuesta.setCompletado("");
+            respuestas.addElement(respuesta);
+            btnModificarRespuesta.setEnabled(false);
+            btnEliminarRespuesta.setEnabled(false);
+            txtRespuesta.setText("");
+            rbIncorrecto.setSelected(true);
+            DefaultListModel model = (DefaultListModel) listaRespuesta.getModel();
+            model.addElement(indice[model.getSize()]);
+            actualizarCampos();
+
+            //actualizar botones
+
+            btnAdicionarRespuesta.setEnabled(true);
+            btnEliminarRespuesta.setEnabled(false);
+            btnModificarRespuesta.setEnabled(false);
+            Limpiarbotones();
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el texto de la respuesta");
+        }
+    }//GEN-LAST:event_btnAdicionarRespuestaActionPerformed
+
+    private void btnModificarRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarRespuestaActionPerformed
+        int seleccion = listaRespuesta.getSelectedIndex();
+        if (seleccion == -1) {
+            return;
+        }
+        Pregunta p = new Pregunta();
+        p = preguntas.get(listaPregunta.getSelectedIndex());
+        p.getRespuestas().get(seleccion).setRespuesta(txtRespuesta.getText());
+        p.getRespuestas().get(seleccion).setCorrecto(rbCorrecto.isSelected());
+        p.getRespuestas().get(seleccion).setMarcado(false);
+
+        //actualizarListaRespuestas(p);
+
+        btnAdicionarRespuesta.setEnabled(true);
+        btnModificarRespuesta.setEnabled(false);
+        btnEliminarRespuesta.setEnabled(true);
+    }//GEN-LAST:event_btnModificarRespuestaActionPerformed
+
+    private void btnBarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarNuevoActionPerformed
+        Nuevo();
+    }//GEN-LAST:event_btnBarNuevoActionPerformed
+
+    
+    public void Abrir(){
+        JFileChooser jf = new JFileChooser();
+        int res = jf.showOpenDialog(this);
+        if (res == jf.APPROVE_OPTION) {
+            String n=jf.getSelectedFile().getName();
+            String ext=n.substring(n.indexOf('.')+1, n.length());
+            if(ext.equals("test")){
+              examen=new Examen();
+              String path=jf.getSelectedFile().getAbsolutePath();
+              examen = ArchivoXML.abrirXML(path);
+              txtRutaExamen.setText(path);
+              actualizarEditor();
+            }else{
+                JOptionPane.showMessageDialog(this, "Tipo de Archivo es incorrecto. Se requiere archivo *.test");
+            }
+        }
+
+    }
+    private void btnBarAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBarAbrirActionPerformed
+        Abrir();
+    }//GEN-LAST:event_btnBarAbrirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -891,15 +1219,22 @@ public class FormPrincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LbRespuesta;
     private javax.swing.JTree TreeExamenes;
     private javax.swing.JButton btnAdicionarPregunta;
+    private javax.swing.JButton btnAdicionarRespuesta;
+    private javax.swing.JButton btnBarAbrir;
     private javax.swing.JButton btnBarGuardar;
+    private javax.swing.JButton btnBarNuevo;
     private javax.swing.JButton btnCargarImagen;
     private javax.swing.JButton btnEliminarPregunta;
+    private javax.swing.JButton btnEliminarRespuesta;
     private javax.swing.JButton btnMarcar;
     private javax.swing.JButton btnModificarPregunta;
+    private javax.swing.JButton btnModificarRespuesta;
     private javax.swing.JButton btnNuevaPregunta;
     private javax.swing.JComboBox cbxTipo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -924,10 +1259,15 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JList listaPregunta;
+    private javax.swing.JList listaRespuesta;
     private javax.swing.JMenu menuNuevo;
     private javax.swing.JPanel panelEditor;
     private javax.swing.JPanel panelPregunta;
+    private javax.swing.JPanel panelRespuesta;
+    private javax.swing.JRadioButton rbCorrecto;
+    private javax.swing.JRadioButton rbIncorrecto;
     private javax.swing.JSpinner spinnerPuntaje;
     private javax.swing.JTextArea textPregunta;
     private javax.swing.JSpinner tiempoExa;
@@ -936,6 +1276,7 @@ public class FormPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtImagen;
     private javax.swing.JTextField txtNombreExa;
     private javax.swing.JTextField txtNombreProfesor;
+    private javax.swing.JTextField txtRespuesta;
     private javax.swing.JTextField txtRutaExamen;
     // End of variables declaration//GEN-END:variables
 }
